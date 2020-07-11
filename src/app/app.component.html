@@ -1,0 +1,107 @@
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10">
+      <h2>Reactive Form</h2>
+
+      <form [formGroup]="userForm">
+        <mat-form-field appearance="legacy">
+          <mat-label>Id</mat-label>
+          <input matInput  placeholder="Id" type="number" formControlName="id" [ngClass]="{ 'is-invalid': submitted && f.id.errors }" required>
+          <mat-error *ngIf="submitted && f.id.errors" class="invalid-feedback">
+            <mat-error *ngIf="f.id.errors.required">Id is required</mat-error>
+        </mat-error>
+        </mat-form-field>
+        <br/>
+
+        <mat-form-field appearance="legacy">
+          <mat-label>Name</mat-label>
+          <input matInput  placeholder="Name" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" required>
+          <mat-error *ngIf="submitted && f.name.errors" class="invalid-feedback">
+            <mat-error *ngIf="f.name.errors.required">name is required</mat-error>
+        </mat-error>
+        </mat-form-field>
+      <br/>
+
+        <mat-form-field appearance="legacy">
+          <mat-label>Mobno</mat-label>
+          <!-- minlength=10 maxlength=10 -->
+          <input matInput placeholder="Mobno" type="number" formControlName="mobno"  [ngClass]="{ 'is-invalid': submitted && f.mobno.errors }" required>
+          <mat-error *ngIf="submitted && f.mobno.errors" class="invalid-feedback">
+            <mat-error *ngIf="f.mobno.errors.required">mobile number is required</mat-error>
+          <mat-error *ngIf="f.mobno.errors.pattern">Pleaze enter 10 digit mobile number </mat-error>
+        </mat-error>
+        </mat-form-field>
+        <br/>
+      
+        <mat-form-field appearance="legacy">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" required>
+        <mat-error *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <mat-error *ngIf="f.email.errors.required">Email is required</mat-error>
+          <mat-error *ngIf="f.email.errors.email">Email must be a valid email address</mat-error>
+      </mat-error>
+        </mat-form-field>
+        <br/>
+      
+        <mat-form-field appearance="legacy">
+          <mat-label>Address</mat-label>
+          <input matInput placeholder="Address" formControlName="address"  [ngClass]="{ 'is-invalid': submitted && f.address.errors }"required>
+          <mat-error *ngIf="submitted && f.address.errors" class="invalid-feedback">
+            <mat-error *ngIf="f.address.errors.required">Address is required</mat-error>
+        </mat-error>
+        </mat-form-field>
+        <br/>
+        <button mat-raised-button color="primary"type="submit"  class="mt-4" (click)="submitForm()">Submit</button>
+      </form>
+    </div>
+  </div>
+
+
+      <div class="row mt-4">
+        <div class="col-md-10">
+          <h2>User Table</h2>
+          <div class="search-hero">
+            <div class="form-group mb-4">
+              <input class="form-control mb-3" type="text" [(ngModel)]="searchText" placeholder="Search name">
+              <input class="form-control mb-3" type="text" [(ngModel)]="mobNo" placeholder="Search Mobile Number">
+            </div>
+          </div>
+       <table class="table ">
+            <thead>
+              <tr>
+                <th>Sno</th>
+              <th>Name</th>
+              <th>MobNO</th>
+              <th>Email</th>
+              <th>Address</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let i of users | filter:searchText |filterMob: mobNo ;   let item = index">
+                <td>{{item +1}}</td>
+                <td>{{i.name}}</td>
+                <td>{{i.mobno}}</td>
+                <td>{{i.email}}</td>
+                <td>{{i.address}}</td>
+                <td>
+                  <button mat-raised-button color="accent" (click)="edit(i)">Edit</button>
+
+                </td>
+                <td>
+                  <button mat-raised-button color="warn" (click)="delete(i)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table> 
+        
+        </div>
+
+      </div>
+    
+</div>
+
+
+<router-outlet></router-outlet>

@@ -1,0 +1,39 @@
+
+<div class="container">
+    <div class="row">
+      <h2>User Update Form</h2>
+        <form [formGroup]="userFormUpdate">
+          <mat-form-field  class="invisible" appearance="legacy">
+            <mat-label>Id</mat-label>
+            <input matInput  placeholder="Id" formControlName="id" required>
+          </mat-form-field>
+          <br/>
+          
+            <mat-form-field appearance="legacy">
+              <mat-label>Name</mat-label>
+              <input matInput  placeholder="Name" formControlName="name" required>
+            </mat-form-field>
+          <br/>
+            <mat-form-field appearance="legacy">
+              <mat-label>Mobno</mat-label>
+              <input matInput placeholder="Mobno" formControlName="mobno" required>
+            </mat-form-field>
+            <br/>
+          
+            <mat-form-field appearance="legacy">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Email" formControlName="email" required>
+            </mat-form-field>
+            <br/>
+          
+            <mat-form-field appearance="legacy">
+              <mat-label>Address</mat-label>
+              <input matInput placeholder="Address" formControlName="address" required>
+            </mat-form-field>
+            <br/>
+          
+        <button mat-raised-button color="primary"type="submit"  class="mt-4" (click)="UpdateForm(user_id)">Update</button>
+
+          </form>
+    </div>
+</div>
